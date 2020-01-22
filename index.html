@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>ROCK, PAPER, SCISSORS game</title>
+    </head>
+    <body>
+        <script>
+            /*RANDOM INTEGER GENERATOR*/
+            function getRandomInteger(min, max) {
+                return Math.floor(Math.random() * max) + min
+            }
+
+            /* TRACK SCORE */
+            let scorePlayer = 0;
+            let scoreComputer = 0;
+
+            /* ROUND FUNCTION */
+            
+            function playRound(player, computer) {
+            
+                /* COMPUTER PLAY CHOICE */
+                computer = getRandomInteger(1,3);
+                switch (computer) {
+                    case 1:
+                        computer = "ROCK";
+                        break;
+                    case 2:
+                        computer = "SCISSORS";
+                        break;
+                    case 3:
+                        computer = "PAPER";
+                }
+                console.log("IA choosed " + computer.toLowerCase() + ".");
+
+                /* PLAYER CHOICE */
+                ask = prompt("ROCK, PAPER or SCISSORS?", "");
+                player = ask.toUpperCase();
+                console.log("You choosed " + player.toLowerCase() + ".");
+
+                /* COMPARE RESULTS + OUTPUT */
+                if ((player=="ROCK" && computer =="ROCK")||(player=="SCISSORS" && computer =="SCISSORS")||(player=="PAPER" && computer =="PAPER")) {
+                    let result = "You DRAW! Try again.";
+                    console.log(result);
+                } else if ((player=="ROCK" && computer =="SCISSORS")||(player=="SCISSORS" && computer =="PAPER")||(player=="PAPER" && computer =="ROCK")) {
+                    let result = "You WIN, IA loses! Good Job!";
+                    scorePlayer = ++scorePlayer;
+                    console.log(result);
+                } else if ((player=="ROCK" && computer =="PAPER")||(player=="SCISSORS" && computer =="ROCK")||(player=="PAPER" && computer =="SCISSORS")) {
+                    let result = "You lose, IA WINS! You are so bad! :(";
+                    scoreComputer = ++scoreComputer;
+                    console.log(result);
+                } else {
+                    console.log("Woops, something went REALLY wrong. :O Try to type rock, scissors or paper.")
+                }
+            }
+
+            /* 5 ROUNDS GAME */
+            function game() {
+                playRound();
+                playRound();
+                playRound();
+                playRound();
+                playRound();
+                if (scorePlayer > scoreComputer) {
+                    console.log("You are the final WINNER! You have " + scorePlayer + " wins. IA has " + scoreComputer + ".");
+                } else if (scorePlayer < scoreComputer) {
+                    console.log("Computer is the final WINNER! You have " + scorePlayer + " wins. IA has " + scoreComputer + ".");
+                } else if (scorePlayer == scoreComputer) {
+                    console.log("This is a DRAW! You have " + scorePlayer + " wins. IA has " + scoreComputer + ".");
+                } else {console.log("Woops, something went REALLY wrong. I have no idea who has won. :O")}
+                }
+
+            game();
+
+
+        </script>
+    </body>
+
+</html>
